@@ -1,0 +1,32 @@
+.main-container {
+}
+
+.header-container {
+  padding: 2rem 1.5rem;
+  background-color: #164fd4;
+  color: #fff;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 500px;
+}
+
+.left-side-container {
+  width: 15%;
+  padding: 2rem 1.5rem;
+  background-color: #356ae6;
+  color: #fff;
+}
+
+.page-container {
+  flex: 1;
+  padding: 2rem 1.5rem;
+}
+
+.footer-container {
+  background-color: #333;
+  color: #e8e8e8;
+  padding: 2rem 1.5rem;
+}
