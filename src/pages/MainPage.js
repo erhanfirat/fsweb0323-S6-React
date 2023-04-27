@@ -1,7 +1,9 @@
+import Title from "../components/Title";
+
 const MainPage = () => {
   return (
     <div>
-      <h2>Ana Sayfa</h2>
+      <Title>Ana Sayfa</Title>
       <hr />
       <p>
         Ana Sayfa İçeriği Lorem ipsum dolor sit amet, consectetur adipiscing

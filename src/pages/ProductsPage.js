@@ -1,5 +1,9 @@
+// outsource js lib
 import { useEffect, useState } from "react";
-
+import { Input } from "reactstrap";
+// internal Js 
+import Title from "../components/Title";
+// css
 import "./ProductsPage.css";
 
 const ProductsPage = ({ products }) => {
@@ -21,9 +25,13 @@ const ProductsPage = ({ products }) => {
 
   return (
     <div>
-      <h2>Ürünler Sayfası</h2>
+      <Title>Ürünler Sayfası</Title>
       <hr />
-      <input type="text" onChange={(e) => setFilterText(e.target.value)} />
+      <Input
+        type="text"
+        onChange={(e) => setFilterText(e.target.value)}
+        className="mb-3"
+      />
       <div className="product-container">
         {filteredProducts.map((product, i) => {
           return (

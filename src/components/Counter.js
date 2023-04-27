@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CounterDisplay from "./CounterDisplay";
+import { Button } from "reactstrap";
 
 import "./Counter.css";
 
@@ -37,39 +38,43 @@ const Counter = () => {
     <div style={{ display: "flex" }}>
       <div className="sayac-container">
         <CounterDisplay counter={sayac} />
-        <button
+        <Button
+          color="primary"
           onClick={() => {
             setSayac(sayac + 1);
           }}
         >
           Arttır
-        </button>
-        <button
+        </Button>
+        <Button
+          color="primary"
           onClick={() => {
             setSayac(sayac - 1);
           }}
         >
           Azalt
-        </button>
+        </Button>
       </div>
       <div className="sayac-container">
         <CounterDisplay counter={sayac2} />
         {!(sayac2 + 1 > sayac) && (
-          <button
+          <Button
+            color="primary"
             onClick={() => {
               if (!(sayac2 + 1 > sayac)) setSayac2(sayac2 + 1);
             }}
           >
             Arttır
-          </button>
+          </Button>
         )}
-        <button
+        <Button
+          color="primary"
           onClick={() => {
             setSayac2(sayac2 - 1);
           }}
         >
           Azalt
-        </button>
+        </Button>
       </div>
     </div>
   );

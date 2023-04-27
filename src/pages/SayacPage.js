@@ -1,9 +1,10 @@
 import Counter from "../components/Counter";
+import Title from "../components/Title";
 
 const SayacPage = () => {
   return (
     <div>
-      <h2>Sayaç Sayfası</h2>
+      <Title>Sayaç Sayfası</Title>
       <hr />
       <Counter />
     </div>
