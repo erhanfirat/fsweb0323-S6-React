@@ -1,7 +1,8 @@
 // outsource js lib
 import { useEffect, useState } from "react";
 import { Input } from "reactstrap";
-// internal Js 
+import { Link, useNavigate } from "react-router-dom";
+// internal Js
 import Title from "../components/Title";
 // css
 import "./ProductsPage.css";
@@ -9,6 +10,7 @@ import "./ProductsPage.css";
 const ProductsPage = ({ products }) => {
   const [filterText, setFilterText] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const nav = useNavigate();
 
   useEffect(() => {
     // console.log("Products datası ürün sayfasından yakalandı: ", products);
@@ -25,7 +27,16 @@ const ProductsPage = ({ products }) => {
 
   return (
     <div>
-      <Title>Ürünler Sayfası</Title>
+      <Title>
+        <button
+          onClick={() => {
+            nav(-1);
+          }}
+        >
+          {"<"}
+        </button>{" "}
+        Ürünler Sayfası
+      </Title>
       <hr />
       <Input
         type="text"
@@ -44,6 +55,14 @@ const ProductsPage = ({ products }) => {
                 <div className="son-urun">Son {product.stock} ürün kaldı!</div>
               )}
               <button disabled={product.stock == 0}>Sepete Ekle</button>
+              <Link to={"/product-page/" + product.id}>Ürünü İncele</Link>
+              <button
+                onClick={() => {
+                  nav("/product-page/" + product.id);
+                }}
+              >
+                Detay
+              </button>
             </div>
           );
         })}

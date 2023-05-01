@@ -1,4 +1,18 @@
-a {
-  text-decoration: none;
+.side-menu-link {
+  display: block;
   color: #fff;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.5s;
+  padding: 0.5rem;
+}
+
+.side-menu-link:hover {
+  color: #85c2fe;
+}
+
+.side-menu-link.active {
+  color: #356ae6;
+  background: #fff;
 }
