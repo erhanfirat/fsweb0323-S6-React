@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Title from "../components/Title";
 // css
 import "./ProductsPage.css";
+import { Button } from "bootstrap";
 
 const ProductsPage = ({ products }) => {
   const [filterText, setFilterText] = useState("");
@@ -37,6 +38,7 @@ const ProductsPage = ({ products }) => {
         </button>{" "}
         Ürünler Sayfası
       </Title>
+      <Link to="/create-product"> Yeni Ürün Ekle </Link>
       <hr />
       <Input
         type="text"

@@ -8,6 +8,7 @@ import ProductsPage from "../pages/ProductsPage";
 
 import "./Main.css";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import CreateProductPage from "../pages/CreateProductPage";
 
 //props drilling
 
@@ -40,6 +41,7 @@ const Main = ({ products }) => {
               path="/product-page/:productId"
               element={<ProductDetailPage products={products} />}
             />
+            <Route path="/create-product" element={<CreateProductPage />} />
           </Routes>
         </div>
       </div>
