@@ -6,16 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Title from "../components/Title";
 // css
 import "./ProductsPage.css";
-import { Button } from "bootstrap";
+import ProductCard from "../components/ProductCard";
 
 const ProductsPage = ({ products }) => {
   const [filterText, setFilterText] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const nav = useNavigate();
-
-  useEffect(() => {
-    // console.log("Products datası ürün sayfasından yakalandı: ", products);
-  }, [products]);
 
   useEffect(() => {
     console.log("[FİLTRELEME ÇALIŞTI] filterText: ", filterText);
@@ -25,6 +21,10 @@ const ProductsPage = ({ products }) => {
       )
     );
   }, [filterText, products]);
+
+  useEffect(() => {
+    console.log("filteredProducts güncellendi", filteredProducts);
+  }, [filteredProducts]);
 
   return (
     <div>
@@ -38,36 +38,21 @@ const ProductsPage = ({ products }) => {
         </button>{" "}
         Ürünler Sayfası
       </Title>
-      <Link to="/create-product"> Yeni Ürün Ekle </Link>
+      <Link to="/create-product" data-test-id="new-product-link">
+        {" "}
+        Yeni Ürün Ekle{" "}
+      </Link>
       <hr />
       <Input
         type="text"
         onChange={(e) => setFilterText(e.target.value)}
         className="mb-3"
+        data-test-id="products-filter-input"
       />
       <div className="product-container">
-        {filteredProducts.map((product, i) => {
-          return (
-            <div className="product-card" key={i}>
-              <img src={product.img} />
-              <h3>{product.name}</h3>
-              <p>{product.description}</p>
-              <div className="product-price">{product.price}</div>
-              {product.stock < 5 && product.stock > 0 && (
-                <div className="son-urun">Son {product.stock} ürün kaldı!</div>
-              )}
-              <button disabled={product.stock == 0}>Sepete Ekle</button>
-              <Link to={"/product-page/" + product.id}>Ürünü İncele</Link>
-              <button
-                onClick={() => {
-                  nav("/product-page/" + product.id);
-                }}
-              >
-                Detay
-              </button>
-            </div>
-          );
-        })}
+        {filteredProducts.map((product, i) => (
+          <ProductCard product={product} />
+        ))}
       </div>
     </div>
   );

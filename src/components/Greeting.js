@@ -4,18 +4,13 @@ const Greeting = ({ userName, userEmail, userAge = 18, setUserAge }) => {
   // console.log("Greeting içinden > ", userName);
 
   useEffect(() => {
-    // ComponentDidMount
-    // console.log("[COMPONENT_DID_MOUNT] Greeting componenti ekrana yüklendi!");
+    console.log("Greeting yüklendi!");
 
     return () => {
-      // component will unmount
-      // console.log(
-      //   "[COMPONENT_WILL_UNMOUNT] Greeting componenti ekrandan silindi!"
-      // );
-      
+      console.log("Greeting silindi!");
     };
   }, []);
-
+  
   return (
     <div className="header-div">
       <h1>Merhaba {userName}! hoş geldiniz...</h1>

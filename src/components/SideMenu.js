@@ -22,6 +22,7 @@ const SideMenu = () => {
         className="side-menu-link"
         to="/products"
         style={({ isActive }) => (isActive ? activeNavLink : null)}
+        data-test-id="urunler-linki"
       >
         Ürünler
       </NavLink>

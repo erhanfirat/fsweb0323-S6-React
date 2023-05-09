@@ -28,11 +28,15 @@ const Counter = () => {
   // }, [sayac, sayac2]);
 
   useEffect(() => {
-    // console.log("Sayac güncellendi: ", sayac);
+    console.log("Sayac güncellendi: ", sayac);
     return () => {
-      // console.log("Return function Sayac: ", sayac);
+      console.log("Return function Sayac (eski değer): ", sayac);
     };
   }, [sayac]);
+
+  // useEffect(() => {
+  //   console.log("Counmter componenti güncellendir! ", new Date());
+  // });
 
   return (
     <div style={{ display: "flex" }}>
