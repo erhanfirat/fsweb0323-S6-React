@@ -1,3 +1,4 @@
+// external libraries
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {
@@ -11,19 +12,19 @@ import {
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
+// internal components, functions, objects
+
+// CSS importları
+
+// import "./CreateProduct.css";
+
 // component başlangıcı
 const CreateProduct = () => {
   // 1 - Data Derfinition: state, local, prop
   // ************************************************
+
   const [isFormValid, setFormValid] = useState();
-  const [product, setProduct] = useState({
-    name: "",
-    img: "",
-    description: "",
-    price: 0,
-    stock: 0,
-    type: "",
-  });
+  const [product, setProduct] = useState({});
 
   const formSchema = Yup.object().shape({
     name: Yup.string()
@@ -76,17 +77,28 @@ const CreateProduct = () => {
       });
   };
 
+  const formSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products", product)
+      .then((res) => {
+        console.log("Yeni product kayıt res > ", res);
+        nav("/products");
+      });
+  };
+
   // 3 - Life cycle events: useEffect
   // ************************************************
 
   useEffect(() => {
+    console.log("product > ", product);
     formSchema.isValid(product).then((valid) => {
       setFormValid(valid);
     });
   }, [product]);
 
   useEffect(() => {
-    console.warn("formErrors: ", formErrors);
+    // console.warn("formErrors: ", formErrors);
   }, [formErrors]);
 
   // 4 - templating
@@ -94,20 +106,7 @@ const CreateProduct = () => {
 
   return (
     <div>
-      <Form
-        onSubmit={(event) => {
-          event.preventDefault();
-          axios
-            .post(
-              "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products",
-              product
-            )
-            .then((res) => {
-              console.log("Yeni product kayıt res > ", res);
-              nav("/products");
-            });
-        }}
-      >
+      <Form onSubmit={formSubmit}>
         <FormGroup>
           <Label htmlFor="product-name">Name</Label>
           <Input

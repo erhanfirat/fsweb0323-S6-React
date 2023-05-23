@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ProductDetail from "../components/ProductDetail";
+import { useSelector } from "react-redux";
 
-const ProductDetailPage = ({ products }) => {
+const ProductDetailPage = ({}) => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
   const nav = useNavigate();
+  const products = useSelector((store) => store.products);
 
   useEffect(() => {
     setProduct(products.find((p) => p.id === productId));

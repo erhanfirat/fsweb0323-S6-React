@@ -7,14 +7,15 @@ import Title from "../components/Title";
 // css
 import "./ProductsPage.css";
 import ProductCard from "../components/ProductCard";
+import { useSelector } from "react-redux";
 
-const ProductsPage = ({ products }) => {
+const ProductsPage = ({}) => {
   const [filterText, setFilterText] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const nav = useNavigate();
+  const products = useSelector((store) => store.products);
 
   useEffect(() => {
-    console.log("[FİLTRELEME ÇALIŞTI] filterText: ", filterText);
     setFilteredProducts(
       products.filter((product) =>
         product.name.toLowerCase().includes(filterText.toLowerCase())
@@ -51,7 +52,7 @@ const ProductsPage = ({ products }) => {
       />
       <div className="product-container">
         {filteredProducts.map((product, i) => (
-          <ProductCard product={product} />
+          <ProductCard product={product} key={i} />
         ))}
       </div>
     </div>

@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
 import Greeting from "../components/Greeting";
 import SideMenu from "../components/SideMenu";
 import MainPage from "../pages/MainPage";
 import SayacPage from "../pages/SayacPage";
 import ProductsPage from "../pages/ProductsPage";
-
-import "./Main.css";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import CreateProductPage from "../pages/CreateProductPage";
+import ProductFormPage from "../pages/ProductFormPage";
+
+import "./Main.css";
 
 //props drilling
 
-const Main = ({ products }) => {
+const Main = ({}) => {
   const [showGreeting, setShowGreeting] = useState(true);
 
   return (
@@ -32,16 +34,14 @@ const Main = ({ products }) => {
         <div className="page-container">
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route
-              path="/products"
-              element={<ProductsPage products={products} />}
-            />
+            <Route path="/products" element={<ProductsPage />} />
             <Route path="/counter" element={<SayacPage />} />
             <Route
               path="/product-page/:productId"
-              element={<ProductDetailPage products={products} />}
+              element={<ProductDetailPage />}
             />
             <Route path="/create-product" element={<CreateProductPage />} />
+            <Route path="/product-form" element={<ProductFormPage />} />
           </Routes>
         </div>
       </div>

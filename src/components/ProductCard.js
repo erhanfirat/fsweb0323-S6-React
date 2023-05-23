@@ -1,7 +1,14 @@
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { Button } from "reactstrap";
+import {
+  addtoShopingCart,
+  deleteProductAction,
+} from "../store/actions/actions";
 
 const ProductCard = ({ product }) => {
   const nav = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div className="product-card" key={product.id}>
@@ -12,15 +19,37 @@ const ProductCard = ({ product }) => {
       {product.stock < 5 && product.stock > 0 && (
         <div className="son-urun">Son {product.stock} ürün kaldı!</div>
       )}
-      <button disabled={product.stock == 0}>Sepete Ekle</button>
-      <Link to={"/product-page/" + product.id}>Ürünü İncele</Link>
-      <button
+      <Button
+        color="primary"
+        className="m-1"
+        disabled={product.stock == 0}
+        onClick={() => {
+          dispatch(addtoShopingCart(product));
+        }}
+      >
+        Sepete Ekle
+      </Button>
+      <Link to={"/product-page/" + product.id} className="m-1">
+        İncele
+      </Link>
+      <Button
+        color="primary"
+        className="m-1"
         onClick={() => {
           nav("/product-page/" + product.id);
         }}
       >
         Detay
-      </button>
+      </Button>
+      <Button
+        color="danger"
+        className="m-1"
+        onClick={() => {
+          dispatch(deleteProductAction(product.id));
+        }}
+      >
+        Ürünü Sil
+      </Button>
     </div>
   );
 };
