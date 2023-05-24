@@ -29,7 +29,10 @@ const ProductCard = ({ product }) => {
       >
         Sepete Ekle
       </Button>
-      <Link to={"/product-page/" + product.id} className="m-1">
+      <Link
+        to={"/product-page/" + product.id}
+        className="m-1 btn btn-secondary"
+      >
         İncele
       </Link>
       <Button
