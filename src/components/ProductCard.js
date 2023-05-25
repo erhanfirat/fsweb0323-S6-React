@@ -4,6 +4,7 @@ import { Button } from "reactstrap";
 import {
   addtoShopingCart,
   deleteProductAction,
+  deleteProductActionCreator,
 } from "../store/actions/actions";
 
 const ProductCard = ({ product }) => {
@@ -48,7 +49,7 @@ const ProductCard = ({ product }) => {
         color="danger"
         className="m-1"
         onClick={() => {
-          dispatch(deleteProductAction(product.id));
+          dispatch(deleteProductActionCreator(product.id));
         }}
       >
         Ürünü Sil
