@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Greeting from "../components/Greeting";
 import SideMenu from "../components/SideMenu";
@@ -11,6 +11,8 @@ import CreateProductPage from "../pages/CreateProductPage";
 import ProductFormPage from "../pages/ProductFormPage";
 
 import "./Main.css";
+import Login from "../pages/Login";
+import ProtectedPage from "../pages/ProtectedPage";
 
 //props drilling
 
@@ -38,10 +40,26 @@ const Main = ({}) => {
             <Route path="/counter" element={<SayacPage />} />
             <Route
               path="/product-page/:productId"
-              element={<ProductDetailPage />}
+              element={
+                <ProtectedPage>
+                  <h1>Aşağıda Korunan bir sayfa var!</h1>
+                  <hr />
+                  <ProductDetailPage />
+                  <hr />
+                  <h1>Yukarıda Korunan bir sayfa var!</h1>
+                </ProtectedPage>
+              }
             />
-            <Route path="/create-product" element={<CreateProductPage />} />
+            <Route
+              path="/create-product"
+              element={
+                <ProtectedPage>
+                  <CreateProductPage />
+                </ProtectedPage>
+              }
+            />
             <Route path="/product-form" element={<ProductFormPage />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </div>

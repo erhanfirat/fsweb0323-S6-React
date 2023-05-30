@@ -40,7 +40,6 @@ const ProductsPage = ({}) => {
         Ürünler Sayfası
       </Title>
       <Link to="/create-product" data-test-id="new-product-link">
-        {" "}
         Yeni Ürün Ekle{" "}
       </Link>
       <hr />

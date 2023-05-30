@@ -92,7 +92,8 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^12.11.0"
+    "cypress": "^12.11.0",
+    "msw": "^1.2.1"
   },
   "jest": {
     "roots": [
@@ -149,5 +150,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
