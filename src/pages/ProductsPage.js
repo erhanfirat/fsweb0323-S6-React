@@ -1,19 +1,23 @@
 // outsource js lib
 import { useEffect, useState } from "react";
-import { Input } from "reactstrap";
+import { Input, Spinner } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 // internal Js
+
 import Title from "../components/Title";
+import ProductCard from "../components/ProductCard";
+import useAxios, { REQ_TYPES } from "../endpoints/useAxios";
 // css
 import "./ProductsPage.css";
-import ProductCard from "../components/ProductCard";
-import { useSelector } from "react-redux";
 
-const ProductsPage = ({}) => {
+const ProductsPage = () => {
   const [filterText, setFilterText] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const nav = useNavigate();
-  const products = useSelector((store) => store.products);
+  const [getProducts, products, loading, error] = useAxios([]);
+  const [deleteProductRequest, deleteRes, deleteLoading, deleteÊrror] =
+    useAxios([]);
+  const [createProduct, createRes, createLoading] = useAxios([]);
 
   useEffect(() => {
     setFilteredProducts(
@@ -26,6 +30,37 @@ const ProductsPage = ({}) => {
   useEffect(() => {
     console.log("filteredProducts güncellendi", filteredProducts);
   }, [filteredProducts]);
+
+  useEffect(() => {
+    getProducts({ endpoint: "products", reqType: REQ_TYPES.GET });
+  }, []);
+
+  const deleteProduct = (prodcutId) => {
+    deleteProductRequest({
+      endpoint: `products/${prodcutId}`,
+      reqType: REQ_TYPES.DELETE,
+    })
+      .then(() => {
+        getProducts({ endpoint: "products", reqType: REQ_TYPES.GET });
+      })
+      .catch((err) => {});
+  };
+
+  const createProductHandler = (productFormState) => {
+    createProduct({
+      endpoint: "products",
+      reqType: REQ_TYPES.POST,
+      payload: productFormState,
+    });
+  };
+
+  const updteProductHandler = (productFormState) => {
+    createProduct({
+      endpoint: `products/${productFormState.id}`,
+      reqType: REQ_TYPES.PUT,
+      payload: productFormState,
+    });
+  };
 
   return (
     <div>
@@ -50,9 +85,18 @@ const ProductsPage = ({}) => {
         data-test-id="products-filter-input"
       />
       <div className="product-container">
-        {filteredProducts.map((product, i) => (
-          <ProductCard product={product} key={i} />
-        ))}
+        {deleteLoading && <span>Ürün siliniyor... </span>}
+        {loading ? (
+          <Spinner>Products Loading...</Spinner>
+        ) : (
+          filteredProducts.map((product, i) => (
+            <ProductCard
+              product={product}
+              key={i}
+              deleteProduct={deleteProduct}
+            />
+          ))
+        )}
       </div>
     </div>
   );

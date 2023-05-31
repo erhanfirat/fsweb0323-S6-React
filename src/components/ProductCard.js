@@ -7,7 +7,7 @@ import {
   deleteProductActionCreator,
 } from "../store/actions/actions";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, deleteProduct }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
@@ -49,7 +49,8 @@ const ProductCard = ({ product }) => {
         color="danger"
         className="m-1"
         onClick={() => {
-          dispatch(deleteProductActionCreator(product.id));
+          // dispatch(deleteProductActionCreator(product.id));
+          deleteProduct(product.id);
         }}
       >
         Ürünü Sil
